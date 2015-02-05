@@ -28,6 +28,9 @@ import Bloodhound from './bloodhound';
 export default Ember.TextField.extend({
     classNames: "typeahead",
 
+    /** the selected value from the dropdown menu **/
+    selection: null,
+
     /** typeahead options **/
     hint: true,
     highlight: true,
@@ -50,7 +53,7 @@ export default Ember.TextField.extend({
     url: null,
 
     filterData: function(data) {
-        return data;
+        return data.results;
     },
 
     source: function() {
@@ -120,11 +123,26 @@ export default Ember.TextField.extend({
     _initializeTypeahead: function() {
         var options = this.get('options');
         var dataset = this.get('dataset');
-        this.$().typeahead(options, dataset);
+        var typeahead = this.$().typeahead(options, dataset);
+
+        var that = this;
+        typeahead.on('typeahead:selected', function(event, item) {
+            that.set('selection', Ember.Object.create(item));
+        });
+
+        this.set('_typeahead', typeahead);
     }.on('didInsertElement'),
 
 
-    _destroyTypeahead: function(){
-        this.$().typeahead('destroy');
+    clearInput: function() {
+        this.$().typeahead('val', '');
+    },
+
+
+    _onWillDestroyElement: function(){
+        this.$().typeahead('val', null);
+        this.set('_typeahead', null);
+        // XXX check this !!!
+        // this.$().typeahead('destroy');
     }.on('willDestroyElement')
 });
