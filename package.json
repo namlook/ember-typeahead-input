@@ -1,7 +1,7 @@
 {
   "name": "ember-typeahead-input",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A Twitter Typeahead addon for ember-cli",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "http://github.com/namlook/ember-typeahead-input",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -35,7 +35,10 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "typeahead",
+    "twitter-typeahead",
+    "autocomplete"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
