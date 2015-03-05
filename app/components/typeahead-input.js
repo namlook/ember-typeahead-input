@@ -1,3 +1,3 @@
-import TypeaheadInput from 'ember-typeahead-input/typeahead-input';
+import TypeaheadInput from 'ember-typeahead-input';
 
 export default TypeaheadInput;
